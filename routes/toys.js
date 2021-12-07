@@ -6,11 +6,18 @@ const router = express.Router();
 //?s=
 //?perPage= כמה להציג בעמוד
 //?page= מספר עמוד ונפיל אותו בפר פייג'
+//?sort= לפי מה למיין את הרשימה
+
 // http://localhost:3000/toys/?page=1&perPage=1
+// http://localhost:3000/toys/?page=1&sort=price
+// http://localhost:3000/toys/?page=1&sort=price&r=yes from the big price to the lower
 router.get("/", async(req,res) => {
     try{
       let perPage = req.query.perPage || 10;
-      let page = req.query.page || 1;
+      let page = (req.query.page >= 1) ? req.query.page - 1: 0; 
+      // "_id" -> ברירת מחדל אם במקרה לא שלחו סורט לפי מה למיין
+      let sort = req.query.sort || "_id";
+      let reverse = (req.query.r == "yes") ? -1 : 1
       let searchQ = req.query.s;
       let query 
       if(!searchQ){
@@ -20,7 +27,10 @@ router.get("/", async(req,res) => {
         let searcRegX = new RegExp(searchQ, "i")
         query = {$or:[{name:searcRegX},{info:searcRegX}]}
       }
-      let data = await ToyModel.find(query).limit(Number(perPage)).skip((page-1) * perPage);
+      let data = await ToyModel.find(query)
+      .limit(Number(perPage))
+      .skip(page * perPage)
+      .sort({[sort]:reverse});
       res.json(data)
     } catch(err){
       console.log(err)
