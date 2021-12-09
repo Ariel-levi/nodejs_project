@@ -1,0 +1,226 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Scrollbar עיצוב ל */
+
+::-webkit-scrollbar {
+width: 9px;
+}
+::-webkit-sc
+/* Track */
+::-webkit-scrollbar-track {
+background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: #555; 
+border-radius: 30px;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #888; 
+}
+
+/* =========================== */
+header {
+    min-height: 90px;
+    background: #eee;
+    border-bottom: 1px solid silver;
+}
+header .container{
+    min-width: 200px;
+    background: #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .container h2 {
+    color: rgb(90, 90, 90);
+    padding: 0 12px;
+    display: inline-flex;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* ========================== */
+
+.header{
+    background: linear-gradient(90deg, rgba(145,145,145,1) 0%, rgba(133,67,67,1) 50%, rgba(111,0,0,1) 100%);
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    box-shadow: -1px 7px 18px 6px rgba(0,0,0,0.97);
+}
+
+.header .info {
+    padding: 20px;
+    font-size: 1.2em;
+    color: #eee;
+    font-weight: bold;
+}
+/* ============================ */
+.main {
+    min-height: 500px;
+    border-top: 2px solid silver;
+    border-bottom: 2px solid silver;
+}
+div h2 {
+    font-weight: bold;
+    color: rgb(90, 90, 90);
+}
+
+.main p {
+    font-size: 1.2em;
+    color: rgb(81, 91, 102);
+}
+  
+.main p a {
+    text-decoration: none;
+    color: rgb(225, 65, 65);
+}
+
+.main span {
+    border: 2px solid silver;
+    padding: 2px 12px;
+    margin-right: 13px;
+    border-radius: 32px;
+    
+}
+.main .req_get {
+    color: green;
+}
+.main .req_post {
+    color: orange;
+}
+.main .req_put {
+    color: blue;
+}
+.main .req_delete {
+    color: red;
+}
+
+.btn_req {
+    border:2.5px solid silver;
+    border-radius: 15px;
+    padding: 5px 16px;
+}
+
+.btn_req:hover {
+    background: rgb(151, 151, 151);
+    color: white;
+    font-weight: bold;
+}
+
+/* ===================================== */
+ /* JSON עיצוב ל */
+
+.json p {
+    margin: 0px;
+    padding: 0px;
+}
+.json .space{
+    padding: 0 20px;
+}
+.json .space_data{
+    padding: 0 40px;
+}
+
+.json span {
+    color: green;
+}
+
+.json .color_blue{
+    color: blue;
+}
+
+
+/* ================================================ */
+ /* TERMINAL עיצוב בצורת */
+
+.fakeButtons {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    position: relative;
+    left: 6px;
+    background-color: #ff3b47;
+    border-color: #9d252b;
+    display: inline-block;
+}
+
+.fakeMinimize {
+    left: 11px;
+    background-color: #ffc100;
+    border-color: #9d802c;
+}
+
+.fakeZoom {
+    left: 16px;
+    background-color: #00d742;
+    border-color: #049931;
+}
+
+.fakeMenu {
+    /* min-width: 550px; */
+    min-width: 336px;
+    box-sizing: border-box;
+    height: 25px;
+    background-color: #bbb;
+    margin: 0 auto;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.fakeScreen {
+    max-height: 500px;
+    /* min-width: 550px; */
+    min-width: 336px;
+    background-color: #1515152c;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow: auto;
+}
+
+/* ======================= */
+
+footer {
+    min-height: 90px;
+    background: #eee;
+}
+
+footer {
+    text-align: center;
+}
+
+footer .container {
+    padding: 16px;
+}
+
+footer .container h4 {
+    font-size: 1.7em;
+    font-weight: bold;
+}
+
+footer .joi {
+    font-size: 2em;
+    font-weight: bold;
+    padding-top: 16px;
+    color: rgb(68, 131, 173);
+}
+
+.rights {
+    background-color: #bbb;
+    margin: 0;
+    text-align: center;
+    padding: 10px 16px;
+    color: rgb(27, 27, 27);
+    font-weight: bold;
+}

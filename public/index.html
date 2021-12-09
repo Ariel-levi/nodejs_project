@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Doc Api Toys</title>
+    <script type="module" src="../js/main.js"></script>
+</head>
+<body>
+    <header class="container-fluid">
+        <div class="container">
+            <img src="images/api.png" alt="Logo" width="60">
+            <nav class="py-4 text-center">
+                <h2>Documentation For My Toys Api</h2>
+            </nav>
+        </div>
+    </header>
+    <div class="container-fluid header">
+        <div class="container">
+            <div class="info">
+                Hey, my name is Ariel Levi and I am a Full Stack Developer. and this is my project, I created a prototype database and a working API using NodeJS, Express, MongoDb, and Postman. This project includes the use of middleware / authetication, several extensions installed using NPM: (Mongoose, JOI, JWT, Bcrypt), the use of Git, I hope you'll love it.
+            </div>
+        </div>
+    </div>
+    <div class="container my-5 main">
+        <h2 class="text-center my-4">Routes</h2>
+        <p><span class="req_get">GET</span> All products :</p>
+        <button id="id_all" class="btn_req my-3">/toys</button>
+        <p><span class="req_get">GET</span> All products by pages and number of products in page the default is 10 products:</p>
+        <button id="id_page" class="btn_req my-3">/toys/?page=1&perPage=5</button>
+        <p><span class="req_get">GET</span> Sorting the list by the price, can be replaced to any other parameters such as name:</p>
+        <button id="id_sort" class="btn_req my-3">/toys/?sort=price</button>
+        <p><span class="req_get">GET</span> showing the list from the last to the first by the value of the sort :</p>
+        <button id="id_reverse" class="btn_req my-3">/toys/?sort=price&r=yes</button>
+        <p><span class="req_get">GET</span> Products with searc option by name or info:</p>
+        <button id="id_searc" class="btn_req my-3">/toys/?s=lego</button>
+        <p><span class="req_get">GET</span> Searc products by category :</p>
+        <button id="id_cat" class="btn_req my-3">/toys/cat/cars</button>
+        <p><span class="req_get">GET</span> Searc products by Maximum and Minimum :</p>
+        <button id="id_minMax" class="btn_req my-3">/toys/prices/?min=25&max=50</button>
+        <p><span class="req_post">POST</span> Add product :</p>
+        <button id="id_post" class="btn_req my-3">/toys</button>
+        <p><span class="req_put">PUT</span> Edit product :</p>
+        <button id="id_put" class="btn_req my-3">/toys/:Id</button>
+        <p><span class="req_delete">DELETE</span> Delete product :</p>
+        <button id="id_delete" class="btn_req my-3">/toys/:Id</button>
+    </div>
+    
+    <div class="container my-5">
+        <div class=fakeMenu>
+            <div class="fakeButtons fakeClose"></div>
+            <div class="fakeButtons fakeMinimize"></div>
+            <div class="fakeButtons fakeZoom"></div>
+        </div>
+        <div class="fakeScreen">
+            <div class="json">
+                <p>[</p>
+                <div id="id_parent"></div>
+                <p>]</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5 main">
+        <h2 class="text-center my-4">Users Routes</h2>
+        <p><span class="req_get">GET</span> Users :</p>
+        <button id="id_all_users" class="btn_req my-3">/users</button>
+        <p><span class="req_get">GET</span> User Info :</p>
+        <button id="id_info" class="btn_req my-3">/users/userInfo</button>
+        <p><span class="req_post">POST</span> New User Registration :</p>
+        <button id="id_registration" class="btn_req my-3">/users</button>
+        <p><span class="req_post">POST</span> User Login :</p>
+        <button id="id_login" class="btn_req my-3">/users/login</button>
+    </div>
+
+    <div class="container my-5">
+        <div class=fakeMenu>
+            <div class="fakeButtons fakeClose"></div>
+            <div class="fakeButtons fakeMinimize"></div>
+            <div class="fakeButtons fakeZoom"></div>
+        </div>
+        <div class="fakeScreen">
+            <div class="json">
+                <p>[</p>
+                <div id="id_parent_users">
+                    <p class="space">{</p>
+                        <p class="space_data" >"msg": <span>"Users work"</span></p>
+                    <p class="space">}</p>
+                </div>
+                <p>]</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="container-fluid d-none d-md-block">
+        <div class="container">
+            <div class="d-flex justify-content-between my-5">
+                <img src="images/mongoose5_62x30_transparent.png" height="40" alt="">
+                <img src="https://jwt.io/img/pic_logo.svg" width="50" alt="">
+                <img src="https://jwt.io/img/logo.svg" width="50" alt="">
+                <p class="joi">Joi</p>
+                <img src="images/expressjs.svg" width="110" alt="">
+                <p><img src="images/lock.png" width="50" alt="">bcrypt</p>
+            </div>
+        </div>
+    </footer>
+    <p class="container-fluid rights">All right reserved © Ariel Levi <span id="id_year"></span></p>
+</body>
+</html>
