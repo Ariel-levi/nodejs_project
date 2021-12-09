@@ -88,6 +88,7 @@ div h2 {
     padding: 2px 12px;
     margin-right: 13px;
     border-radius: 32px;
+    font-weight: bold;
     
 }
 .main .req_get {
@@ -103,6 +104,10 @@ div h2 {
     color: red;
 }
 
+.main .req_token:hover {
+    color: red;
+}
+
 .btn_req {
     border:2.5px solid silver;
     border-radius: 15px;
@@ -112,7 +117,6 @@ div h2 {
 .btn_req:hover {
     background: rgb(151, 151, 151);
     color: white;
-    font-weight: bold;
 }
 
 /* ===================================== */

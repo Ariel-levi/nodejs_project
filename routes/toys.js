@@ -66,6 +66,25 @@ router.get("/prices", async(req,res) => {
     }
 })
 
+// http://localhost:3000/toys/mytoys
+router.get("/mytoys" , auth, async(req,res) => {
+  let perPage = req.query.perPage || 5;
+  let page = (req.query.page) ? req.query.page - 1: 0;
+  let sort = req.query.sort || "_id"; 
+  let reverse = req.query.reverse == "yes" ? -1 : 1; 
+  try{
+    let data = await ToyModel.find({user_id:req.userTokenData._id})
+    .limit(Number(perPage))
+    .skip(page * perPage)
+    .sort({[sort]:reverse})
+    res.json(data);
+  }
+  catch(err){
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
+
 // הוספת צעצוע - POST
 router.post("/", auth , async(req,res) => {
   // בדיקה שהריקוייסט באדי תקין /ולדזציה

@@ -82,12 +82,21 @@ const declareEvents = () => {
         `;
     });
 
+    let btn_mytoys = document.querySelector("#id_mytoys");
+    btn_mytoys.addEventListener("click", () => {
+        document.querySelector("#id_parent").innerHTML = `
+        <p class="space">{</p>
+            <p class="space_data text-success">For this example you need to use PostMan</p>   
+        <p class="space">}</p>
+        `;
+    });
+
     let btn_put = document.querySelector("#id_put");
     btn_put.addEventListener("click", () => {
         document.querySelector("#id_parent").innerHTML = `
-        <h4>url :: http://localhost:3000/toys/61a87984563d695f10416ae1</h4>
+        <h4 class="space_data">url :: http://localhost:3000/toys/61a87984563d695f10416ae1</h4>
         <br />
-        <p>Request Body:</p>
+        <p class="space_data">Request Body:</p>
         <br />
         <p class="space">{</p>
             <p class="space_data" >"name": <span>"{NAME}"</span>,</p>
@@ -97,9 +106,9 @@ const declareEvents = () => {
             <p class="space_data" >"img_url": <span>"{IMG_URL_OPTIONAL}"</span>,</p>
         <p class="space">}</p>
         <br />
-        <p>Response: 201</p>
+        <p class="space_data">Response: 201</p>
         <br />
-        <p>modifiedCount -> 1</p>
+        <p class="space_data text-primary">modifiedCount -> 1</p>
 
         `;
     });
@@ -107,11 +116,11 @@ const declareEvents = () => {
     let btn_delete = document.querySelector("#id_delete");
     btn_delete.addEventListener("click", () => {
         document.querySelector("#id_parent").innerHTML = `
-        <h4>url :: http://localhost:3000/toys/61a87984563d695f10416ae1</h4>
+        <h4 class="space_data">url :: http://localhost:3000/toys/61a87984563d695f10416ae1</h4>
         <br />
-        <p>Response:</p>
+        <p class="space_data">Response:</p>
         <br />
-        <p>deletedCount -> 1</p>
+        <p class="space_data text-danger">deletedCount -> 1</p>
         
         `;
     });
@@ -143,7 +152,7 @@ const declareEvents = () => {
     btn_registration_users.addEventListener("click", () => {
         document.querySelector("#id_parent_users").innerHTML = `
         <br />
-        <p>Request Body:</p>
+        <p class="space_data">Request Body:</p>
         <br />
         <p class="space">{</p>
             <p class="space_data" >"name": <span>"{USER NAME}"</span></p>
@@ -151,7 +160,7 @@ const declareEvents = () => {
             <p class="space_data" >"password": <span>"{USER PASSWORD}"</span></p>
         <p class="space">}</p>
         <br />
-        <p>Response: 201</p>
+        <p class="space_data">Response: 201</p>
         <br />
         <p class="space">{</p>
             <p class="space_data" >"name": <span>"{USER NAME}"</span></p>
@@ -169,14 +178,14 @@ const declareEvents = () => {
     btn_login_users.addEventListener("click", () => {
         document.querySelector("#id_parent_users").innerHTML = `
         <br />
-        <p>Request Body:</p>
+        <p class="space_data">Request Body:</p>
         <br />
         <p class="space">{</p>
             <p class="space_data" >"email": <span>"{USER EMAIL}"</span></p>
             <p class="space_data" >"password": <span>"{USER PASSWORD}"</span></p>
         <p class="space">}</p>
         <br />
-        <p>Response: 201</p>
+        <p class="space_data">Response: 201</p>
         <br />
         <p class="space">{</p>
             <p class="space_data" >"token": <span>"{USER TOKEN}"</span></p>
