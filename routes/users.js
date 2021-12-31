@@ -1,27 +1,29 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-// פונקציה שבודקת שהמשתמש יש לו טוקן תקף
-const {auth} = require("../middlewares/auth")
-const { validateUser, UserModel, validateLogin, genToken } = require("../models/userModel");
+// Function that checks that the user has a valid toucan
+const { auth } = require("../middlewares/auth");
+const {
+  validateUser,
+  UserModel,
+  validateLogin,
+  genToken,
+} = require("../models/userModel");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.json({ msg: "Users work" })
-})
+  res.json({ msg: "Users work" });
+});
 
-
-// כדי לעבור לפונקציה הבאה אחרי האוט מצפה לקבל באוט את הפונקציה נקסט
 router.get("/userInfo", auth, async (req, res) => {
-  // שולף את המידע של המשתמש לפי האיידי שבטוקן
-  // 1 -> מייצג רק להציג את המאפיין הנל
-  // 0 -> מייצג להציג הכל חוץ מאת המאפיין
-  let user = await UserModel.findOne({_id:req.userTokenData._id},{password:0})
+  let user = await UserModel.findOne(
+    { _id: req.userTokenData._id },
+    { password: 0 }
+  );
   // res.json(req.userTokenData)
-  res.json(user)
+  res.json(user);
+});
 
-})
-
-// הרשמה של משתמש חדש
+// Sign up a new user
 router.post("/", async (req, res) => {
   let validBody = validateUser(req.body);
   if (validBody.error) {
@@ -29,23 +31,23 @@ router.post("/", async (req, res) => {
   }
   try {
     let user = new UserModel(req.body);
-    // להצפין את הסיסמא רמת הצפנה 10
+    // Encrypt password encryption level 10
     user.password = await bcrypt.hash(user.password, 10);
     await user.save();
-    // להסתיר מהצד לקוח את הסיסמא
+    // Hide password from client side
     user.password = "Hidden Pass ***";
     res.json(user);
-
-  }
-  catch (err) {
-    // בודק אם הטעות  זה במקרה אימייל שקיים
+  } catch (err) {
+    // Checking if the mistake is an email case that exists
     if (err.code == 11000) {
-      return res.status(500).json({ msg: "Email already in system , try login" })
+      return res
+        .status(500)
+        .json({ msg: "Email already in system , try login" });
     }
-    console.log(err)
-    res.status(500).json(err)
+    console.log(err);
+    res.status(500).json(err);
   }
-})
+});
 
 router.post("/login", async (req, res) => {
   let validBody = validateLogin(req.body);
@@ -53,27 +55,22 @@ router.post("/login", async (req, res) => {
     return res.status(400).json(validBody.error.details);
   }
   try {
-    // לבדוק אם בכלל יש מתשמש שיש לו את האימייל הזה
+    // Check if there's any user used this email
     let user = await UserModel.findOne({ email: req.body.email });
     if (!user) {
       return res.status(401).json({ msg: "Email not found !!" });
     }
-    // בודק שהסיסמא שהגיע בבאדי מתאימה לסיסמא של הרשומה שמוצפנת
-    let validPass = await bcrypt.compare(req.body.password, user.password)
+    //Checking the password
+    let validPass = await bcrypt.compare(req.body.password, user.password);
     if (!validPass) {
       return res.status(401).json({ msg: "Password or email is worng !!" });
     }
-    // מייצר טוקן עם האיי די והשם של המשתמש ומחזיר
-    // את זה לצד לקוח
-    // בדרך כלל נשמור רק את האיי די
     let newToken = genToken(user._id);
     res.json({ token: newToken });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
-  catch (err) {
-    console.log(err)
-    res.status(500).json(err)
-  }
-})
+});
 
 module.exports = router;
-

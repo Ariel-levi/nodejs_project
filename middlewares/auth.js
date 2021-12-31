@@ -1,26 +1,24 @@
 const jwt = require("jsonwebtoken");
+const { config } = require("../config/secret");
 
-// middleware - פונקציית אמצע שבודקת אוטנקציה של המשתמש מחובר
-// const auth = (req, res, next) => {
 exports.auth = (req, res, next) => {
-  // בודק אם בכלל נשלח טוקן מהצד לקוח
+  // Check for a token
   let token = req.header("x-api-key");
   if (!token) {
-    return res.status(401).json({ msg: "You must send Token to this end point" })
+    return res
+      .status(401)
+      .json({ msg: "You must send token to this endpoint" });
   }
   try {
-    // מנסה לתרגם את הטוקן ההפך מקידוד ולשלוף את המידע במקרה שלנו את האיי די, אם לא מצליח קופץ לטעות קצ
-    let decodToken = jwt.verify(token, "ariel1234");
-    // req -> פרמטר של אובייקט שזהה בכל הפונקציות בשרשור
-    // ואם נייצר לו מאפיין הוא יהיה קיים גם בפונקציה הבאה בשרשור
-    req.userTokenData = decodToken;
-    // עובר לפונקציה הבאה בשרשור של הראוטר
+    // Check to encode the token and if it is valid
+    let decodeToken = jwt.verify(token, config.TokenSecret);
+    req.userToken = decodeToken;
+    // Switch to the next function
     next();
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(401)
+      .json({ msg: "Token invalid (if you hacker) or token expired" });
   }
-  catch (err) {
-    // במקרה של בדיקת טוקן אם יש טעון בדיקוד
-    // של טוקן לא תקין או לא תקף הוא קופץ לקצ
-    console.log(err)
-    res.status(401).json({ msg: "Token invalid or expired" })
-  }
-}
+};
