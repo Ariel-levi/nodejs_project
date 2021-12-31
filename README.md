@@ -11,3 +11,5 @@ heroku link for the project :: 🔗
 
 https://ariel-levi-toys-project.herokuapp.com/
 
+
+![1](https://user-images.githubusercontent.com/38177520/147823451-f05a29f8-4ae5-4da3-92e2-8fd1d2af1c68.png)
